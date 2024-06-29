@@ -22,7 +22,6 @@ export default function Auth() {
             Log In
           </Text>
         </Pressable>
-
         <TouchableOpacity
           activeOpacity={1}
           className="w-full justify-center items-center border-[.5px] active:bg-gray-200 rounded-md"

@@ -12,18 +12,17 @@ import { Link, useRouter } from "expo-router";
 import { supabase } from "../../lib/supabase";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
 
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: username,
+      email: email,
       password: password,
     });
     if (!error) {
-      console.log("success");
       router.replace("/(protected)/home");
     } else {
       console.log(error.message);
@@ -42,10 +41,10 @@ export default function Login() {
         <TextInput
           className="border-[1px] h-12 w-full rounded-md p-2"
           onChangeText={(newText) => {
-            setUsername(newText);
+            setEmail(newText);
           }}
-          placeholder="Username"
-          value={username}
+          placeholder="Enter your Email"
+          value={email}
         />
         <TextInput
           className="border-[1px] w-1/2 w-full h-12 mt-2 rounded-md p-2"

@@ -1,9 +1,24 @@
 import { Tabs } from "expo-router";
-import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { userInfo } from "../../utils/functions/userInfo";
 
 export default function TabLayout() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const info = await userInfo();
+        setUser(info);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
   return (
     <Tabs
       screenOptions={{
@@ -28,8 +43,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="announcements"
         options={{
-          title: "Announc",
+          title: "Announcements",
           tabBarLabel: "Announcements",
+        }}
+      />
+
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: "Admin Panel",
+          tabBarLabel: "Admin",
+          tabBarStyle: "hidden",
+          href: user?.role != "admin" ? null : "/(protected)/admin",
         }}
       />
     </Tabs>
