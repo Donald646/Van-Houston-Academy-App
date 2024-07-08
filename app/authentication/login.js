@@ -1,15 +1,10 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
-import React from "react";
-import { useState } from "react";
+import { View, Text, SafeAreaView, Pressable } from "react-native";
+import React, { useState } from "react";
 import { Link, useRouter } from "expo-router";
 import { supabase } from "../../lib/supabase";
+import { TextInput } from "react-native-paper";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -39,20 +34,36 @@ export default function Login() {
 
         <Text className="mb-1 text-[#cc0000]">{message}</Text>
         <TextInput
-          className="border-[1px] h-12 w-full rounded-md p-2"
-          onChangeText={(newText) => {
-            setEmail(newText);
-          }}
+          className="border-[1px] h-12 w-full rounded-md bg-white"
+          onChangeText={setEmail}
           placeholder="Enter your Email"
           value={email}
+          selectionColor="black"
+          underlineColor="transparent"
+          activeUnderlineColor="transparent"
+          mode="flat"
+          left={
+            <TextInput.Icon
+              icon={() => (
+                <MaterialIcons name="email" size={24} color="black" />
+              )}
+            />
+          }
         />
         <TextInput
-          className="border-[1px] w-1/2 w-full h-12 mt-2 rounded-md p-2"
-          onChangeText={(newText) => {
-            setPassword(newText);
-          }}
+          theme={{ colors: { primary: "black" } }}
+          className="border-[1px] w-full h-12 mt-2 rounded-md bg-white"
+          onChangeText={setPassword}
+          selectionColor="black"
+          underlineColor="transparent"
+          activeUnderlineColor="transparent"
           placeholder="Password"
           value={password}
+          left={
+            <TextInput.Icon
+              icon={() => <FontAwesome name="lock" size={24} color="black" />}
+            />
+          }
           secureTextEntry={true}
         />
         <Link href="/authentication/forget">

@@ -7,6 +7,9 @@ export default function Auth() {
   const router = useRouter();
   return (
     <SafeAreaView className="h-full bg-white">
+      <Pressable onPress={() => router.push("/home")}>
+        <Text>Dev ONLY</Text>
+      </Pressable>
       <View className="h-2/3 items-center justify-center">
         <Text className="text-black text-4xl font-extrabold text-[#ae2833] font-serif text-center">
           Van Houston <Text className="text-[#252e59]">Academy</Text>

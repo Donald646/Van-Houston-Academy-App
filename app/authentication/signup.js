@@ -2,7 +2,6 @@ import {
   View,
   Text,
   SafeAreaView,
-  TextInput,
   Button,
   TouchableOpacity,
 } from "react-native";
@@ -10,6 +9,9 @@ import React from "react";
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { useRouter } from "expo-router";
+import { TextInput } from "react-native-paper";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -44,7 +46,7 @@ export default function Signup() {
   };
 
   return (
-    <SafeAreaView className="flex-1 max-w-full p-2">
+    <SafeAreaView className="flex-1 max-w-full p-2 bg-white">
       <View className="h-1/2 flex items-left max-w-full justify-start p-4">
         <Text className="text-4xl text-center text-blue-800 w-full font-bold mb-[5vh]">
           Sign Up
@@ -52,31 +54,71 @@ export default function Signup() {
 
         <View className="flex flex-col gap-2">
           <Text className="mb-1 text-[#cc0000] font-bold">{message}</Text>
-          <TextInput
-            className="border-2 h-12 w-full rounded-md p-2"
-            onChangeText={(newText) => {
-              setUsername(newText);
-            }}
-            placeholder="Username Here"
-            value={username}
-          />
-          <TextInput
-            className="border-2 h-12 w-full rounded-md p-2"
-            onChangeText={(newText) => {
-              setEmail(newText);
-            }}
-            placeholder="example@egmail.com"
-            value={email}
-          />
-          <TextInput
-            className="border-2 w-1/2 w-full h-12 rounded-md p-2"
-            onChangeText={(newText) => {
-              setPassword(newText);
-            }}
-            placeholder="Password"
-            value={password}
-            secureTextEntry={true}
-          />
+          <View>
+            <TextInput
+              className="border-[1px] shadow-sm bg-white border-[#e5e6e8] h-12 w-full rounded-md"
+              onChangeText={(newText) => {
+                setUsername(newText);
+              }}
+              placeholder="Username Here"
+              value={username}
+              selectionColor="black" // Very light selection color
+              underlineColor="transparent"
+              activeUnderlineColor="transparent"
+              mode="flat"
+              left={
+                <TextInput.Icon
+                  icon={() => (
+                    <FontAwesome name="user" size={24} color="black" />
+                  )}
+                />
+              }
+            />
+          </View>
+          <View>
+            <TextInput
+              className="border-[1px] h-12 w-full shadow-sm border-[#e5e6e8] rounded-md bg-white"
+              onChangeText={(newText) => {
+                setEmail(newText);
+              }}
+              placeholder="Enter your Email"
+              value={email}
+              selectionColor="black" // Very light selection color
+              underlineColor="transparent"
+              activeUnderlineColor="transparent"
+              mode="flat"
+              left={
+                <TextInput.Icon
+                  icon={() => (
+                    <MaterialIcons name="email" size={24} color="black" />
+                  )}
+                />
+              }
+            />
+          </View>
+
+          <View>
+            <TextInput
+              theme={{ colors: { primary: "black" } }}
+              className="border-[1px] w-1/2 w-full h-12 mt-2 shadow-sm border-[#e5e6e8] rounded-md bg-white"
+              onChangeText={(newText) => {
+                setPassword(newText);
+              }}
+              selectionColor="black" // Very light selection color
+              underlineColor="transparent"
+              activeUnderlineColor="transparent"
+              placeholder="Password"
+              value={password}
+              left={
+                <TextInput.Icon
+                  icon={() => (
+                    <FontAwesome name="lock" size={24} color="black" />
+                  )}
+                />
+              }
+              secureTextEntry={true}
+            />
+          </View>
         </View>
 
         <TouchableOpacity

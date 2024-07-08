@@ -7,11 +7,10 @@
     "icon": "./assets/vanacademyapp.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/vanacademyapp.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -20,16 +19,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/vanacademyapp.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/vanacademyapp.png"
     },
     "plugins": [
       "expo-router"
     ],
-    "scheme": "acme"
+    "scheme": "acme",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3787095a-adcd-4713-b664-653348b8d64b"
+      }
+    }
   }
 }
